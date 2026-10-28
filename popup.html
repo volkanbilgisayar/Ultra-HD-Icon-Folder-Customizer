@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resmi ICO'ya Dönüştür</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      width: 320px;
+      background: #f8fafc;
+      color: #1e293b;
+      padding: 16px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #e2e8f0;
+      margin-bottom: 14px;
+    }
+
+    .header img {
+      width: 28px;
+      height: 28px;
+    }
+
+    .header h1 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .tip-box {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 12px;
+      line-height: 1.5;
+      color: #1e40af;
+      margin-bottom: 14px;
+    }
+
+    .tip-box strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #1d4ed8;
+    }
+
+    .drop-zone {
+      border: 2px dashed #cbd5e1;
+      border-radius: 8px;
+      background: #ffffff;
+      padding: 20px 14px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .drop-zone:hover, .drop-zone.dragover {
+      border-color: #2563eb;
+      background: #f0f7ff;
+    }
+
+    .drop-zone svg {
+      width: 32px;
+      height: 32px;
+      fill: #3b82f6;
+      margin-bottom: 8px;
+    }
+
+    .drop-zone p {
+      font-size: 13px;
+      font-weight: 500;
+      color: #475569;
+    }
+
+    .drop-zone span {
+      display: block;
+      font-size: 11px;
+      color: #94a3b8;
+      margin-top: 4px;
+    }
+
+    #fileInput {
+      display: none;
+    }
+
+    .status {
+      margin-top: 12px;
+      padding: 8px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      text-align: center;
+      display: none;
+    }
+
+    .status.success {
+      display: block;
+      background: #dcfce7;
+      color: #15803d;
+      border: 1px solid #bbf7d0;
+    }
+
+    .status.loading {
+      display: block;
+      background: #fef3c7;
+      color: #b45309;
+      border: 1px solid #fde68a;
+    }
+
+    .status.error {
+      display: block;
+      background: #fee2e2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+    }
+
+    .features {
+      margin-top: 14px;
+      padding-top: 10px;
+      border-top: 1px solid #e2e8f0;
+      font-size: 11px;
+      color: #64748b;
+    }
+
+    .features ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .features li {
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .features li::before {
+      content: "•";
+      color: #3b82f6;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img src="icon48.png" alt="ICO Icon">
+    <h1>Resmi ICO Olarak Kaydet</h1>
+  </div>
+
+  <div class="tip-box">
+    <strong>🖱️ Sağ Tık Kullanımı:</strong>
+    Herhangi bir web sayfasındaki resme sağ tıklayıp <em>"Resmi ICO Olarak İndir (.ico)"</em> seçeneğine tıklayın.
+  </div>
+
+  <div class="drop-zone" id="dropZone">
+    <svg viewBox="0 0 24 24">
+      <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/>
+    </svg>
+    <p>Resmi Buraya Sürükleyin</p>
+    <span>veya bilgisayardan dosya seçin</span>
+    <input type="file" id="fileInput" accept="image/*">
+  </div>
+
+  <div id="statusMessage" class="status"></div>
+
+  <div class="features">
+    <ul>
+      <li>16x16, 32x32, 48x48, 64x64, 128x128, 256x256</li>
+      <li>Windows standartlarına tam uyumlu gerçek .ico</li>
+      <li>PNG, JPG, WebP, GIF, SVG destekler</li>
+    </ul>
+  </div>
+
+  <script src="ico-utils.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
