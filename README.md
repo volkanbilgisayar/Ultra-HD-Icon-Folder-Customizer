@@ -1,81 +1,62 @@
-# 🎨 Ultra HD (256x256) İkon ve Klasör Özelleştirme Paketi
+# 🎨 Ultra HD (256x256) İkon ve Klasör Özelleştirici v2.1
 
-Bu paket, hem web'den tek tıkla **256x256 Ultra HD** `.ico` simgeleri indirmenizi sağlayan bir **Chrome Eklentisi**, hem de bilgisayarınızdaki veya harici diskinizdeki (PS3, PC oyunları, arşivler vb.) yüzlerce klasörün simgesini içlerindeki ikonlarla saniyeler içinde değiştiren **Klasör İkon Yapıcı** Windows aracını içerir.
+Modern Windows 10 & 11 standartlarında **256x256 Ultra HD** kristal netliğinde klasör simgeleri uygulayan, resimleri anında çok katmanlı HD `.ico` formatına dönüştüren ve tek tıkla Windows'a kurulan **hepsi-bir-arada masaüstü yazılımı**.
 
 ---
 
-## 📦 Paket İçeriği
+## 🚀 Öne Çıkan Yenilikler (v2.1)
+
+1. **Tek Dosya Kurulum Sihirbazı (`UltraHDIkonKurulum.exe`):**
+   * Normal bir Windows programı gibi çalışır; Başlat Menüsü ve Masaüstü kısayollarını oluşturur, Windows "Program Ekle/Kaldır" sistemine kaydolur ve klasör sağ tık menüsüne anında entegre olur.
+2. **Özel 3D Fluent Tasarım İkonu:**
+   * Çok katmanlı (256x256, 128x128, 64x64, 48x48, 32x32, 16x16) özel 3D kristal cam detaylı klasör simgesi ile Windows görev çubuğu ve masaüstünde daima cam gibi net görünür.
+3. **Dahili Görsel Dönüştürücü (Resimden HD ICO Yap):**
+   * Artık tarayıcıya veya internete bile gerek yok! Bilgisayarınızdaki herhangi bir resmi (PNG, JPG, BMP) program penceresine veya `.exe`'nin üzerine sürükleyip bıraktığınız anda saf 256x256 Ultra HD `.ico` oluşturur.
+4. **Gömülü Chrome Eklentisi (Tek Tıkla Kur):**
+   * Chrome eklentisinin tüm dosyaları programın içine gömülmüştür. Program arayüzündeki tek butona basarak eklentiyi dışa aktarabilir ve Chrome'a anında ekleyebilirsiniz.
+5. **Taşınabilir Bağıl Yol Desteği (`folder_icon.ico,0`):**
+   * Klasörlerinizi nereye taşırsanız taşıyın (Flash bellek, harici disk, başka bilgisayar), simgeler asla kaybolmaz.
+
+---
+
+## 📦 Dosyalar
 
 | Dosya | Açıklama |
 | :--- | :--- |
-| **`KlasorIkonYapici.exe`** | Klasörleri tarayan, 256x256 HD simgeleri uygulayan grafik arayüzlü Windows programı. |
-| **`KlasorIkonUygula.bat`** | Klasörleri üzerine sürükleyip bırakarak toplu ikon uygulamak için pratik başlatıcı. |
-| **`manifest.json`, `background.js`, `ico-utils.js`** | Web'den sağ tıkla HD `.ico` indiren Google Chrome eklentisi. |
-| **`popup.html`, `popup.js`** | Chrome eklentisi için sürükle-bırak hızlı dönüştürme penceresi. |
-| **`KlasorIkonYapici.cs`** | C# kaynak kodu (Windows'un dahili `csc.exe` derleyicisiyle derlenebilir, sıfır bağımlılık). |
+| **`UltraHDIkonKurulum.exe`** | **Önerilen:** Windows Kurulum Sihirbazı (Masaüstü, Başlat ve Sağ tık entegrasyonu yapar). |
+| **`KlasorIkonYapici.exe`** | Kurulumsuz doğrudan çalışan taşınabilir (Portable) bağımsız uygulama. |
+| **`folder_icon.ico` / `app_icon.png`** | Özel 256x256 Ultra HD çok katmanlı uygulama simgesi. |
+| **`Setup.cs` & `KlasorIkonYapici.cs`** | C# kaynak kodları (Windows dahili `csc.exe` ile sıfır bağımlılıkla derlenebilir). |
+| **Chrome Eklentisi Dosyaları** | `manifest.json`, `background.js`, `popup.*` vb. (ayrıca exe içine gömülüdür). |
 
 ---
 
-## 🌐 1. Chrome Eklentisi: Kurulum ve Kullanım
+## 💻 Kullanım Yolları
 
-Web sitelerinden veya Google Görseller'den kapak/resim ararken doğrudan **256x256 Ultra HD** `.ico` olarak indirmek için:
+### Yöntem 1: Windows Sağ Tık Menüsü (En Kolay Yol ⭐)
+* Kurulum yapıldıktan sonra bilgisayarınızdaki veya harici diskinizdeki herhangi bir klasöre **sağ tıklayın**:
+  👉 **"İçindeki İkonu Klasör Simgesi Yap (HD)"** seçeneğine basmanız yeterlidir.
 
-### Kurulum:
-1. Google Chrome'u açın ve adres çubuğuna `chrome://extensions` yazıp `Enter`a basın.
-2. Sağ üst köşedeki **"Geliştirici modu"** (Developer mode) anahtarını açın.
-3. Sol üstte beliren **"Paketlenmemiş öğe yükle"** (Load unpacked) butonuna tıklayın.
-4. Bu klasörü (`c:\Users\Volkan\Desktop\ikon`) seçin. Eklenti anında kurulacaktır.
+### Yöntem 2: Program Arayüzü ile Toplu Tarama
+* Programı açın, ana klasörünüzü seçin (veya sürükleyip bırakın).
+* **"🚀 HD İkonları Uygula"** butonuna basın. Yüzlerce oyun ve arşiv klasörü saniyeler içinde taranıp güncellenir.
 
-### Kullanım:
-* **Sağ Tıkla İndirme:** Web'de herhangi bir görsele (veya Google Görseller sonucuna) sağ tıklayın ve **"Resmi ICO Olarak İndir (.ico)"** seçeneğini seçin. Eklenti, görselin orijinal yüksek çözünürlüğünü yakalar ve tek katman saf 256x256 HD `.ico` olarak İndirilenler klasörünüze kaydeder.
-* **Masaüstünden Dönüştürme:** Chrome'un sağ üstündeki eklenti simgesine tıklayın, açılan kutucuğa bilgisayarınızdaki herhangi bir resmi (PNG, JPG, WebP) sürükleyip bırakın; anında 256x256 `.ico` olarak insin.
+### Yöntem 3: Sürükle-Bırak ile Resimden ICO Yapma
+* İster masaüstündeki bir görseli doğrudan `KlasorIkonYapici.exe`'nin üzerine sürükleyin, ister programdaki **"🎨 Resimden 256x256 ICO Yap"** sekmesine bırakın; anında 256x256 saf ICO çıktısı alırsınız.
 
----
-
-## 📁 2. Klasör İkon Yapıcı (`KlasorIkonYapici.exe`) Kullanımı
-
-Klasörlerin içine indirdiğiniz `.ico` dosyalarını veya oyunların kendi resimlerini (`ICON0.PNG`, `cover.jpg` vb.) klasörün dış simgesi yapmak için 3 pratik yöntem vardır:
-
-### Yöntem A: Windows Sağ Tık Menüsü (En Kolay Yol ⭐)
-1. `KlasorIkonYapici.exe` programını bir kere açın.
-2. **"🖱️ Sağ Tık Menüsüne Ekle"** butonuna tıklayın.
-3. Artık programı açmanıza gerek kalmaz! Windows Gezgini'nde veya harici diskinizde istediğiniz herhangi bir klasöre **sağ tıklayıp**:
-   👉 **"İçindeki İkonu Klasör Simgesi Yap (HD)"** seçeneğine basmanız yeterlidir.
-
-### Yöntem B: Program Arayüzü ile Toplu Tarama
-1. `KlasorIkonYapici.exe` uygulamasını çalıştırın.
-2. **Gözat...** butonuna basarak ana klasörünüzü (örneğin `F:\3000-4000` veya `F:\ATILIYOR`) seçin (veya klasörü pencereye sürükleyip bırakın).
-3. **"Tüm alt klasörleri de tara ve uygula"** kutusu işaretliyken **"🚀 HD İkonları Uygula"** butonuna basın.
-4. Yüzlerce oyun klasörü birkaç saniye içinde taranıp simgeleri güncellenecektir.
-
-### Yöntem C: Otomatik İzleme (Canlı Takip 👁️)
-* İndirme yaptığınız klasörü veya oyun arşivinizi seçip **"👁️ Bu klasörü otomatik izle"** kutusunu işaretleyin.
-* Siz Chrome'dan klasörün içine yeni bir `.ico` veya resim indirdiğiniz anda, program bunu algılar ve hiç bir butona basmanıza gerek kalmadan klasör simgesini anında günceller.
+### Yöntem 4: Canlı İzleme (Otomatik Takip 👁️)
+* İndirme klasörünüzü seçip **"👁️ Bu klasörü otomatik izle"** kutusunu işaretleyin. Klasöre yeni bir `.ico` veya resim geldiğinde siz hiçbir şeye dokunmadan klasörün simgesi anında değişir.
 
 ---
 
-## 🎯 Çözülen Sorunlar & Akıllı Özellikler
+## ⚙️ Kaynak Koddan Yeniden Derleme
 
-1. **Bulanıklık ("Çamur Gibi" Görünüm) Engellendi:**
-   * Çok boyutlu eski ICO dosyalarında Windows bazen 16x16 küçük katmanı seçip esnetiyordu. Bu paketteki tüm araçlar **saf 256x256 Ultra HD** formatında çalışır. Windows Explorer ve Fotoğraflar uygulamasında boyut her zaman "256 x 256" görünür, piksellenme yapmaz.
-2. **Sarı Klasör İçinde Ezilme (`FolderType=Generic`) Temizlendi:**
-   * Klasörlerin varsayılan sarı klasör içinde minik resim şeklinde görünmesine sebep olan hatalı `desktop.ini` şablonları kaldırılmıştır. Sadece saf 2 satırlı standart simge formatı yazılır (`[.ShellClassInfo] IconResource=...`).
-3. **Kardeş Klasör Eşleştirme (PS3 BLES / NPEB Desteği):**
-   * PS3 oyunlarında disk klasörü (`BLES...`) ve dijital klasör (`NPEB...`) ikili bulunur. İkon bu klasörlerden sadece birinde olsa bile program aynı kod numarasına sahip eşini bulur ve iki klasöre de simgeyi otomatik uygular.
-   * Klasörde `.ico` yoksa bile PlayStation'ın orijinal `ICON0.PNG` görselini veya klasördeki herhangi bir kapak resmini otomatik 256x256 HD simgeye dönüştürür.
-4. **Harici Disklerde (FAT32) Donma Yok:**
-   * Oyunların `USRDIR`, `TROPDIR`, `LICDIR` gibi binlerce dosyalık derin klasörleri akıllı arama kuyruğu sayesinde atlanır, işlem saniyeler içinde tamamlanır.
-5. **Windows 10 & 11 Simge Önbelleği Temizleyici:**
-   * Değiştirdiğiniz simgeler Windows'un eski önbelleği yüzünden hemen güncellenmezse, programdaki **"🧹 Simge Önbelleğini Temizle"** butonuna basmanız yeterlidir. Windows 11 `iconcache_*.db` dosyalarını temizleyip Gezgin'i anında yeniler.
-6. **Taşınabilir Bağıl Yol (Klasör Taşınınca Simge Kaybolmaz):**
-   * Eskiden `desktop.ini` dosyasına `C:\...` veya `F:\...` gibi sabit tam yollar yazılırdı. Klasör başka bir sürücüye, masaüstüne veya harici diske taşındığında eski yol bulunamadığı için simge sarı klasöre dönerdi. Artık **bağıl yol (`folder_icon.ico,0`)** kullanılır; klasörü nereye taşırsanız taşıyın, başka bir bilgisayara veya USB belleğe atsanız bile simgeler asla bozulmaz.
-
----
-
-## ⚙️ Yeniden Derleme (İsteğe Bağlı)
-
-Program herhangi bir kuruluma veya harici kütüphaneye ihtiyaç duymaz. Kaynak kodda (`KlasorIkonYapici.cs`) değişiklik yaparsanız, Windows'un kendi dahili C# derleyicisi ile komut satırından tek satırda derleyebilirsiniz:
+Windows'un dahili `csc.exe` derleyicisi ile harici hiçbir araca ihtiyaç duymadan komut satırından derleyebilirsiniz:
 
 ```cmd
-C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe /target:winexe /optimize+ /platform:anycpu /out:KlasorIkonYapici.exe KlasorIkonYapici.cs
+:: 1. Ana Uygulamayı Derle (İkon ve Eklenti Kaynakları Gömülü)
+C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe /target:winexe /optimize+ /platform:anycpu /win32icon:folder_icon.ico /resource:manifest.json /resource:background.js /resource:ico-utils.js /resource:popup.html /resource:popup.js /resource:icon16.png /resource:icon48.png /resource:icon128.png /out:KlasorIkonYapici.exe KlasorIkonYapici.cs
+
+:: 2. Tek Exe Kurulum Sihirbazını Derle
+C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe /target:winexe /optimize+ /platform:anycpu /win32icon:folder_icon.ico /resource:KlasorIkonYapici.exe /resource:folder_icon.ico /out:UltraHDIkonKurulum.exe Setup.cs
 ```
