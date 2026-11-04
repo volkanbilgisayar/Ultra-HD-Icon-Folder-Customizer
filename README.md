@@ -1,80 +1,256 @@
-# 🎨 Ultra HD (256x256) İkon ve Klasör Özelleştirici v2.1
+# 🎨 Ultra HD Icon & Folder Customizer
 
-Modern Windows 10 & 11 standartlarında **256x256 Ultra HD** kristal netliğinde klasör simgeleri uygulayan, resimleri anında çok katmanlı HD `.ico` formatına dönüştüren ve tek tıkla Windows'a kurulan **hepsi-bir-arada masaüstü yazılımı**.
+<p align="center">
+  <strong>Give Your Windows Folders a New Look.</strong><br>
+  Windows için HD klasör simgeleri oluşturun, uygulayın ve yönetin.
+</p>
 
-### 📥 Doğrudan İndirme Linkleri (v2.1):
-* 🚀 **[Ultra HD Kurulum Sihirbazı İndir (Setup .exe)](https://github.com/volkanbilgisayar/Ultra-HD-Icon-Folder-Customizer/raw/main/UltraHDIkonKurulum.exe)** *(Önerilen - Program Files'a kurar)*
-* ⚡ **[Taşınabilir Sürümü İndir (Portable .exe)](https://github.com/volkanbilgisayar/Ultra-HD-Icon-Folder-Customizer/raw/main/KlasorIkonYapici.exe)** *(Kurulumsuz doğrudan çalışır)*
-* 📦 **[Kurulum Paketi (.zip)](https://github.com/volkanbilgisayar/Ultra-HD-Icon-Folder-Customizer/raw/main/UltraHDIkonKurulum-v2.1.0-Setup.zip)**
+<p align="center">
+  <a href="https://github.com/volkanbilgisayar/Ultra-HD-Icon-Folder-Customizer">
+    <img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github" alt="GitHub Repository">
+  </a>
+  <img src="https://img.shields.io/badge/Platform-Windows%2010%20%7C%2011-0078D4?style=for-the-badge&logo=windows" alt="Windows 10 and 11">
+  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="MIT License">
+  <img src="https://img.shields.io/badge/Format-256x256%20ICO-orange?style=for-the-badge" alt="256x256 ICO">
+</p>
 
----
-
-## 🚀 Öne Çıkan Yenilikler (v2.1)
-
-1. **Program Files Kurulum Sihirbazı (`UltraHDIkonKurulum.exe`):**
-   * Windows standartlarına tam uyumlu olarak `C:\Program Files\Ultra HD Ikon Ozellestirici` dizinine kurulur.
-   * Başlat Menüsü ve Masaüstü kısayollarını oluşturur, Windows Denetim Masası / "Program Ekle veya Kaldır" listesine kaydolur ve klasör sağ tık menüsüne anında entegre olur.
-   * Doğrudan [GitHub Releases](https://github.com/volkanbilgisayar/Ultra-HD-Icon-Folder-Customizer/releases) sayfasından sürümüne göre tek tıkla indirilebilir.
-2. **Özel 3D Fluent Tasarım İkonu:**
-   * Çok katmanlı (256x256, 128x128, 64x64, 48x48, 32x32, 16x16) özel 3D kristal cam detaylı klasör simgesi ile Windows görev çubuğu ve masaüstünde daima cam gibi net görünür.
-3. **Dahili Görsel Dönüştürücü (Resimden HD ICO Yap):**
-   * Artık tarayıcıya veya internete bile gerek yok! Bilgisayarınızdaki herhangi bir resmi (PNG, JPG, BMP) program penceresine veya `.exe`'nin üzerine sürükleyip bıraktığınız anda saf 256x256 Ultra HD `.ico` oluşturur.
-4. **Gömülü Chrome Eklentisi (Tek Tıkla Kur):**
-   * Chrome eklentisinin tüm dosyaları programın içine gömülmüştür. Program arayüzündeki tek butona basarak eklentiyi dışa aktarabilir ve Chrome'a anında ekleyebilirsiniz.
-5. **Taşınabilir Bağıl Yol Desteği (`folder_icon.ico,0`):**
-   * Klasörlerinizi nereye taşırsanız taşıyın (Flash bellek, harici disk, başka bilgisayar), simgeler asla kaybolmaz.
-
----
-
-## 📦 Dosyalar
-
-| Dosya | Açıklama |
-| :--- | :--- |
-| **`UltraHDIkonKurulum.exe`** | **Önerilen:** Windows Kurulum Sihirbazı (Masaüstü, Başlat ve Sağ tık entegrasyonu yapar). |
-| **`KlasorIkonYapici.exe`** | Kurulumsuz doğrudan çalışan taşınabilir (Portable) bağımsız uygulama. |
-| **`folder_icon.ico` / `app_icon.png`** | Özel 256x256 Ultra HD çok katmanlı uygulama simgesi. |
-| **`Setup.cs` & `KlasorIkonYapici.cs`** | C# kaynak kodları (Windows dahili `csc.exe` ile sıfır bağımlılıkla derlenebilir). |
-| **Chrome Eklentisi Dosyaları** | `manifest.json`, `background.js`, `popup.*` vb. (ayrıca exe içine gömülüdür). |
+<p align="center">
+  <a href="#-özellikler">Özellikler</a> •
+  <a href="#-indirme">İndirme</a> •
+  <a href="#-kurulum">Kurulum</a> •
+  <a href="#-kullanım">Kullanım</a> •
+  <a href="#-teknoloji">Teknoloji</a> •
+  <a href="#-katkıda-bulunma">Katkıda Bulunma</a>
+</p>
 
 ---
 
-## 💻 Kullanım Yolları
+## 📌 Proje Hakkında
 
-### Yöntem 1: Windows Sağ Tık Menüsü (En Kolay Yol ⭐)
-* Kurulum yapıldıktan sonra bilgisayarınızdaki veya harici diskinizdeki herhangi bir klasöre **sağ tıklayın**:
-  👉 **"İçindeki İkonu Klasör Simgesi Yap (HD)"** seçeneğine basmanız yeterlidir.
+**Ultra HD Icon & Folder Customizer**, Windows 10 ve Windows 11 kullanıcılarının klasörlerini kişiselleştirmesini ve görsel arşivlerini daha düzenli hale getirmesini amaçlayan bir Windows yardımcı yazılımıdır.
 
-### Yöntem 2: Program Arayüzü ile Toplu Tarama
-* Programı açın, ana klasörünüzü seçin (veya sürükleyip bırakın).
-* **"🚀 HD İkonları Uygula"** butonuna basın. Yüzlerce oyun ve arşiv klasörü saniyeler içinde taranıp güncellenir.
+Oyun arşivlerinizi, program klasörlerinizi, taşınabilir disklerinizi ve kişisel dosyalarınızı özel klasör simgeleriyle düzenleyebilirsiniz.
 
-### Yöntem 3: Sürükle-Bırak ile Resimden ICO Yapma
-* İster masaüstündeki bir görseli doğrudan `KlasorIkonYapici.exe`'nin üzerine sürükleyin, ister programdaki **"🎨 Resimden 256x256 ICO Yap"** sekmesine bırakın; anında 256x256 saf ICO çıktısı alırsınız.
+Program; klasör simgesi uygulama, görselleri `.ico` formatına dönüştürme, toplu klasör işlemleri ve entegre Chrome eklentisi gibi işlevleri tek bir projede bir araya getirir.
 
-### Yöntem 4: Canlı İzleme (Otomatik Takip 👁️)
-* İndirme klasörünüzü seçip **"👁️ Bu klasörü otomatik izle"** kutusunu işaretleyin. Klasöre yeni bir `.ico` veya resim geldiğinde siz hiçbir şeye dokunmadan klasörün simgesi anında değişir.
+### ✨ Neden bu proje?
 
----
-
-## 🤝 Katkıda Bulunanlar & Teşekkür (Credits)
-
-| Katkıda Bulunan | Rol / Katkı |
-| :--- | :--- |
-| 👨‍💻 **[Volkan Bilgisayar](https://github.com/volkanbilgisayar)** | Proje Sahibi, Fikir & Geliştirici |
-| 🤖 **Google Gemini & Antigravity** | Mimari Tasarım, C# Motoru, Kurulum Sihirbazı & 3D Simge |
-
-> *Bu proje, **Google DeepMind Antigravity** ve **Google Gemini** gelişmiş yapay zeka ikili programlama (Pair Programming) desteğiyle geliştirilmiştir.*
+- 🎨 **Kişiselleştirme:** Klasörlerinize kendi simgelerinizi uygulayın.
+- 🖼️ **HD ikonlar:** 256×256 çözünürlüğe yönelik ICO oluşturma desteği.
+- ⚡ **Hızlı erişim:** Desteklenen işlemleri Windows sağ tık menüsünden başlatın.
+- 📁 **Toplu düzenleme:** Bir ana klasör altındaki çok sayıda klasör üzerinde işlem yapın.
+- 🔌 **Taşınabilir kullanım:** Kurulum gerektirmeyen EXE sürümünü kullanın.
+- 🌐 **Tarayıcı entegrasyonu:** Projede bulunan Chrome eklentisini dışa aktarın.
 
 ---
 
-## ⚙️ Kaynak Koddan Yeniden Derleme
+## 🚀 Özellikler
 
-Windows'un dahili `csc.exe` derleyicisi ile harici hiçbir araca ihtiyaç duymadan komut satırından derleyebilirsiniz:
+| Özellik | Açıklama |
+|---|---|
+| 🖼️ HD ICO oluşturma | PNG, JPG ve BMP görsellerinden klasör simgesi oluşturma |
+| 📐 256×256 ikon | Yüksek çözünürlüklü simge üretimi |
+| 📦 Çok katmanlı ICO | Birden fazla simge boyutunu içeren ICO desteği |
+| 🖱️ Sağ tık entegrasyonu | Desteklenen klasör işlemlerine hızlı erişim |
+| 📂 Toplu klasör işlemleri | Seçilen ana klasör altındaki klasörleri işleme |
+| 🧲 Sürükle ve bırak | Görseli veya dosyayı uygulamaya bırakabilme |
+| 👁️ Klasör izleme | Desteklenen dosya değişikliklerini takip etme |
+| 💾 Portable sürüm | Kurulum yapmadan çalıştırılabilen uygulama |
+| 🧰 Kurulum sihirbazı | Windows'a uygulama ve kısayol kurulumu |
+| 🌐 Chrome eklentisi | Paket içerisindeki eklenti dosyalarını dışa aktarma |
 
-```cmd
-:: 1. Ana Uygulamayı Derle (İkon ve Eklenti Kaynakları Gömülü)
-C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe /target:winexe /optimize+ /platform:anycpu /win32icon:folder_icon.ico /resource:manifest.json /resource:background.js /resource:ico-utils.js /resource:popup.html /resource:popup.js /resource:icon16.png /resource:icon48.png /resource:icon128.png /out:KlasorIkonYapici.exe KlasorIkonYapici.cs
+> Not: Özelliklerin kullanılabilirliği dağıtılan sürüme ve Windows yapılandırmasına bağlı olabilir.
 
-:: 2. Tek Exe Kurulum Sihirbazını Derle
-C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe /target:winexe /optimize+ /platform:anycpu /win32icon:folder_icon.ico /resource:KlasorIkonYapici.exe /resource:folder_icon.ico /out:UltraHDIkonKurulum.exe Setup.cs
+---
+
+## 📥 İndirme
+
+### En kolay seçenek: Kurulum sihirbazı
+
+Windows bilgisayarınıza uygulamayı kurmak ve desteklenen kısayol/sağ tık entegrasyonlarından yararlanmak için kurulum sürümünü tercih edin.
+
+<p align="center">
+  <a href="https://github.com/volkanbilgisayar/Ultra-HD-Icon-Folder-Customizer/releases">
+    <img src="https://img.shields.io/badge/Download-Latest%20Release-2EA44F?style=for-the-badge&logo=github" alt="Latest Release">
+  </a>
+</p>
+
+| Paket | Açıklama |
+|---|---|
+| `UltraHDIkonKurulum.exe` | Kurulum sihirbazı |
+| `KlasorIkonYapici.exe` | Portable uygulama |
+| `UltraHDIkonKurulum-v2.1.0-Setup.zip` | ZIP kurulum paketi |
+
+**İndirme:** [GitHub Releases](https://github.com/volkanbilgisayar/Ultra-HD-Icon-Folder-Customizer/releases)  
+**Kaynak kod:** [GitHub Repository](https://github.com/volkanbilgisayar/Ultra-HD-Icon-Folder-Customizer)
+
+İndirdiğiniz dosyanın adını ve sürümünü kontrol edin. Kaynağı doğrulanamayan yürütülebilir dosyaları çalıştırmayın.
+
+---
+
+## 🛠️ Kurulum
+
+### Yöntem 1 — Kurulum sihirbazı
+
+1. Releases sayfasını açın.
+2. İstediğiniz sürümün kurulum paketini indirin.
+3. İndirilen dosyayı çalıştırın.
+4. Kurulum adımlarını takip edin.
+5. Kurulum tamamlandıktan sonra uygulamayı Başlat menüsünden açın.
+
+### Yöntem 2 — Portable sürüm
+
+1. `KlasorIkonYapici.exe` dosyasını indirin.
+2. Dosyayı istediğiniz klasöre yerleştirin.
+3. Uygulamayı çalıştırın.
+
+Portable sürüm, kurulum sihirbazını kullanmak istemeyen kullanıcılar içindir. Sağ tık menüsü gibi sistem entegrasyonları için kurulum sürümü gerekebilir.
+
+---
+
+## 📖 Kullanım
+
+### 1. Klasör simgesi uygulama
+
+Kurulumdan sonra desteklenen bir klasöre sağ tıklayın ve uygulamanın eklediği HD simge seçeneğini kullanın.
+
+### 2. Toplu klasör düzenleme
+
+1. Programı açın.
+2. İşlem yapmak istediğiniz ana klasörü seçin.
+3. Uygulamadaki HD ikon uygulama seçeneğini kullanın.
+4. İşlem tamamlandığında klasör simgelerini kontrol edin.
+
+Bu yöntem özellikle çok sayıda oyun, yazılım ve arşiv klasörünü düzenlemek isteyen kullanıcılar için uygundur.
+
+### 3. Görselden ICO oluşturma
+
+1. PNG, JPG veya BMP formatındaki bir görsel seçin.
+2. Görseli desteklenen sürükle-bırak alanına bırakın veya uygulamanın ilgili özelliğini kullanın.
+3. Oluşturulan ICO dosyasını kaydedin.
+4. ICO dosyasını desteklenen klasör özelleştirme işleminde kullanın.
+
+### 4. Otomatik klasör izleme
+
+Uygulamada bulunan klasör izleme seçeneğini etkinleştirin ve izlemek istediğiniz klasörü seçin.
+
+İzleme özelliğinin hangi dosya değişikliklerini algıladığı ve hangi koşullarda simgeyi güncellediği kullanılan sürüme bağlıdır.
+
+### 5. Chrome eklentisi
+
+Projeyle birlikte gelen eklenti dosyalarını uygulamanın ilgili seçeneği üzerinden dışa aktarın. Ardından Chrome'un uzantı yönetim sayfasından uygun yükleme yöntemini kullanın.
+
+---
+
+## 🖥️ Sistem Gereksinimleri
+
+| Bileşen | Gereksinim |
+|---|---|
+| İşletim sistemi | Windows 10 / Windows 11 |
+| Mimari | Dağıtılan EXE sürümüne bağlı |
+| İnternet | Temel yerel işlemler için sürekli bağlantı hedeflenmez |
+| Ek yazılım | Dağıtılan pakete ve kullanılan özelliğe bağlı |
+
+---
+
+## 🧩 Teknoloji
+
+Proje dosyalarında bulunan temel bileşenler:
+
+- **C#:** Windows yardımcı uygulaması ve kurulum sihirbazı.
+- **Windows ICO:** Klasör simgesi dosya biçimi.
+- **JavaScript:** Chrome eklentisi bileşenleri.
+- **HTML:** Eklenti arayüzü.
+- **GitHub:** Kaynak kod, sürüm ve proje dağıtımı.
+
+Kaynak kodlar, proje içerisinde bulunan `.cs`, `.js`, `.html` ve yapılandırma dosyalarından incelenebilir.
+
+---
+
+## 📂 Depo Yapısı
+
+```text
+Ultra-HD-Icon-Folder-Customizer/
+├── .github/
+│   └── workflows/
+├── KlasorIkonYapici.cs
+├── KlasorIkonYapici.exe
+├── KlasorIkonUygula.bat
+├── Setup.cs
+├── UltraHDIkonKurulum.exe
+├── UltraHDIkonKurulum-v2.1.0-Setup.zip
+├── folder_icon.ico
+├── app_icon.png
+├── manifest.json
+├── background.js
+├── ico-utils.js
+├── popup.html
+├── popup.js
+├── icon16.png
+├── icon48.png
+├── icon128.png
+├── LICENSE
+└── README.md
 ```
+
+---
+
+## 🔒 Güvenlik ve Gizlilik
+
+- Uygulamayı mümkün olduğunda resmi GitHub deposundan indirin.
+- Çalıştırılabilir dosyaları kullanmadan önce kaynağını ve sürümünü kontrol edin.
+- Kaynak kodu inceleyerek uygulamanın davranışını değerlendirebilirsiniz.
+- Yönetici izinlerini yalnızca gerçekten gerekli işlemler için verin.
+
+Bu bölüm, bağımsız bir güvenlik denetiminin yapıldığı veya her sürümün zararsızlığının garanti edildiği anlamına gelmez.
+
+---
+
+## 🤝 Katkıda Bulunma
+
+Projeyi geliştirmek, hata bildirmek veya yeni özellik önermek istiyorsanız:
+
+1. Mevcut [Issues](https://github.com/volkanbilgisayar/Ultra-HD-Icon-Folder-Customizer/issues) bölümünü kontrol edin.
+2. Yeni bir hata veya özellik talebi oluşturun.
+3. Değişikliklerinizi açıklayan bir Pull Request gönderin.
+
+Hata bildirimlerinde Windows sürümünü, kullandığınız uygulama sürümünü, tekrar üretme adımlarını ve varsa hata mesajını eklemeniz faydalıdır.
+
+---
+
+## 🗺️ Yol Haritası
+
+Gelecekte değerlendirilebilecek geliştirmeler:
+
+- [ ] Daha kapsamlı simge kütüphanesi
+- [ ] Klasör simgeleri için önizleme arayüzü
+- [ ] Toplu işlem sonuç raporu
+- [ ] Daha ayrıntılı hata günlükleri
+- [ ] Çoklu dil desteği
+- [ ] Otomatik sürüm ve dağıtım iş akışları
+
+Bu maddeler öneri niteliğindedir; mevcut sürümde tamamlanmış özellikler olarak değerlendirilmemelidir.
+
+---
+
+## 📜 Lisans
+
+Bu proje [MIT License](LICENSE) kapsamında yayımlanmaktadır. Kullanım, değişiklik ve dağıtım koşulları için lisans dosyasını inceleyin.
+
+---
+
+## 👨‍💻 Geliştirici
+
+**Volkan Bilgisayar**
+
+Fikir, proje geliştirme ve bakım.
+
+- GitHub: [@volkanbilgisayar](https://github.com/volkanbilgisayar)
+- Repository: [Ultra-HD-Icon-Folder-Customizer](https://github.com/volkanbilgisayar/Ultra-HD-Icon-Folder-Customizer)
+
+---
+
+<p align="center">
+  <strong>Made for Windows customization enthusiasts.</strong><br>
+  Klasörlerinize kendi tarzınızı katın. 🎨
+</p>
