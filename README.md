@@ -51,6 +51,17 @@ Modern Windows 10 & 11 standartlarında **256x256 Ultra HD** kristal netliğinde
 
 ---
 
+## 🤝 Katkıda Bulunanlar & Teşekkür (Credits)
+
+| Katkıda Bulunan | Rol / Katkı |
+| :--- | :--- |
+| 👨‍💻 **[Volkan Bilgisayar](https://github.com/volkanbilgisayar)** | Proje Sahibi, Fikir & Geliştirici |
+| 🤖 **Google Gemini & Antigravity** | Mimari Tasarım, C# Motoru, Kurulum Sihirbazı & 3D Simge |
+
+> *Bu proje, **Google DeepMind Antigravity** ve **Google Gemini** gelişmiş yapay zeka ikili programlama (Pair Programming) desteğiyle geliştirilmiştir.*
+
+---
+
 ## ⚙️ Kaynak Koddan Yeniden Derleme
 
 Windows'un dahili `csc.exe` derleyicisi ile harici hiçbir araca ihtiyaç duymadan komut satırından derleyebilirsiniz:
