@@ -5,17 +5,55 @@ using System.Windows.Forms;
 using System.Reflection;
 using System.Diagnostics;
 using Microsoft.Win32;
-using System.Runtime.InteropServices;
+using System.Security.Principal;
 
 namespace FolderIconSetup
 {
     static class SetupProgram
     {
+        public static bool IsAdministrator()
+        {
+            try
+            {
+                WindowsIdentity identity = WindowsIdentity.GetCurrent();
+                WindowsPrincipal principal = new WindowsPrincipal(identity);
+                return principal.IsInRole(WindowsBuiltInRole.Administrator);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         [STAThread]
         static void Main(string[] args)
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            // Program Files klasörüne ve sistem ayarlarına sorunsuz yazabilmek için Yönetici İzni iste
+            if (!IsAdministrator())
+            {
+                try
+                {
+                    ProcessStartInfo psi = new ProcessStartInfo();
+                    psi.FileName = Application.ExecutablePath;
+                    psi.Verb = "runas";
+                    psi.UseShellExecute = true;
+                    Process.Start(psi);
+                    return;
+                }
+                catch
+                {
+                    MessageBox.Show(
+                        "Program Files klasörüne kurulum yapabilmek için yönetici izni gereklidir.\nLütfen kurulumu 'Yönetici Olarak Çalıştır' seçeneğiyle başlatın.",
+                        "Yönetici İzni Gerekli",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+
             Application.Run(new SetupForm());
         }
     }
@@ -45,7 +83,7 @@ namespace FolderIconSetup
         private void InitializeComponent()
         {
             this.Text = APP_NAME + " - Kurulum Sihirbazı";
-            this.Size = new Size(580, 470);
+            this.Size = new Size(580, 480);
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -57,7 +95,7 @@ namespace FolderIconSetup
             }
             catch { }
 
-            // 1. Üst Banner
+            // 1. Üst Banner (Modern Lacivert / Degrade)
             Panel pnlBanner = new Panel();
             pnlBanner.Dock = DockStyle.Top;
             pnlBanner.Height = 75;
@@ -83,19 +121,21 @@ namespace FolderIconSetup
 
             // 2. Açıklama
             Label lblDesc = new Label();
-            lblDesc.Text = "Bu sihirbaz, Ultra HD İkon ve Klasör Özelleştirici uygulamasını bilgisayarınıza kuracaktır.\n" +
-                           "Kurulum sonrasında program Masaüstünüze, Başlat Menünüze ve klasör sağ tık menünüze normal bir Windows programı gibi entegre edilecektir.";
+            lblDesc.Text = "Bu sihirbaz, Ultra HD İkon ve Klasör Özelleştirici uygulamasını 'Program Files' altına kuracaktır.\n" +
+                           "Kurulum sonrasında program Masaüstünüze, Başlat Menünüze ve klasör sağ tık menünüze standart bir Windows programı olarak entegre edilecektir.";
             lblDesc.Location = new Point(20, 95);
             lblDesc.Size = new Size(525, 45);
             this.Controls.Add(lblDesc);
 
-            // 3. Kurulum Konumu
+            // 3. Kurulum Konumu (Program Files)
             GroupBox grpPath = new GroupBox();
-            grpPath.Text = " Kurulum Konumu ";
+            grpPath.Text = " Kurulum Konumu (Program Files) ";
             grpPath.Location = new Point(20, 150);
             grpPath.Size = new Size(525, 70);
 
-            string defaultDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), @"Programs\Ultra HD Ikon Ozellestirici");
+            string programFiles = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+            string defaultDir = Path.Combine(programFiles, "Ultra HD Ikon Ozellestirici");
+
             txtTarget = new TextBox();
             txtTarget.Location = new Point(15, 28);
             txtTarget.Size = new Size(395, 25);
@@ -150,21 +190,21 @@ namespace FolderIconSetup
 
             // 5. İlerleme Çubuğu ve Durum
             progressBar = new ProgressBar();
-            progressBar.Location = new Point(20, 350);
+            progressBar.Location = new Point(20, 355);
             progressBar.Size = new Size(525, 20);
             progressBar.Visible = false;
             this.Controls.Add(progressBar);
 
             lblStatus = new Label();
-            lblStatus.Location = new Point(20, 375);
+            lblStatus.Location = new Point(20, 380);
             lblStatus.Size = new Size(350, 22);
             lblStatus.ForeColor = Color.DarkSlateBlue;
-            lblStatus.Text = "Kuruluma hazır.";
+            lblStatus.Text = "Kuruluma hazır (Yönetici yetkisi onaylandı).";
             this.Controls.Add(lblStatus);
 
             chkLaunchNow = new CheckBox();
             chkLaunchNow.Text = "Programı şimdi çalıştır";
-            chkLaunchNow.Location = new Point(20, 350);
+            chkLaunchNow.Location = new Point(20, 355);
             chkLaunchNow.AutoSize = true;
             chkLaunchNow.Checked = true;
             chkLaunchNow.Visible = false;
@@ -173,7 +213,7 @@ namespace FolderIconSetup
             // 6. Alt Butonlar
             btnInstall = new Button();
             btnInstall.Text = "🚀 Kur";
-            btnInstall.Location = new Point(345, 380);
+            btnInstall.Location = new Point(345, 385);
             btnInstall.Size = new Size(95, 34);
             btnInstall.BackColor = Color.FromArgb(25, 90, 200);
             btnInstall.ForeColor = Color.White;
@@ -184,7 +224,7 @@ namespace FolderIconSetup
 
             btnCancel = new Button();
             btnCancel.Text = "İptal";
-            btnCancel.Location = new Point(450, 380);
+            btnCancel.Location = new Point(450, 385);
             btnCancel.Size = new Size(95, 34);
             btnCancel.Click += (s, e) => this.Close();
             this.Controls.Add(btnCancel);
@@ -217,7 +257,7 @@ namespace FolderIconSetup
             btnCancel.Enabled = false;
             progressBar.Visible = true;
             progressBar.Value = 10;
-            lblStatus.Text = "Kurulum başlatılıyor...";
+            lblStatus.Text = "Program Files dizini hazırlanıyor...";
             Application.DoEvents();
 
             try
@@ -227,8 +267,8 @@ namespace FolderIconSetup
                     Directory.CreateDirectory(targetDir);
                 }
 
-                progressBar.Value = 30;
-                lblStatus.Text = "Program dosyaları yükleniyor...";
+                progressBar.Value = 35;
+                lblStatus.Text = "Program dosyaları Program Files'a kopyalanıyor...";
                 Application.DoEvents();
 
                 string targetExe = Path.Combine(targetDir, "KlasorIkonYapici.exe");
@@ -251,7 +291,6 @@ namespace FolderIconSetup
                     }
                     else
                     {
-                        // Aynı klasördeki mevcut KlasorIkonYapici.exe dosyasını kopyala
                         string localExe = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "KlasorIkonYapici.exe");
                         if (File.Exists(localExe))
                         {
@@ -286,11 +325,11 @@ namespace FolderIconSetup
                     }
                 }
 
-                progressBar.Value = 60;
-                lblStatus.Text = "Kısayollar ve Windows entegrasyonu yapılıyor...";
+                progressBar.Value = 65;
+                lblStatus.Text = "Kısayollar ve sistem kayıtları yapılıyor...";
                 Application.DoEvents();
 
-                // Kısayollar
+                // Masaüstü ve Başlat Kısayolları (Mümkünse Ortak/Tüm Kullanıcılar için, değilse Mevcut Kullanıcı)
                 string desktop = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
                 string startMenu = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.StartMenu), "Programs");
 
@@ -306,33 +345,22 @@ namespace FolderIconSetup
                     CreateShortcut(sLnk, targetExe, APP_NAME, targetExe);
                 }
 
-                // Sağ Tık Menüsü
+                // Sağ Tık Menüsü Entegrasyonu
                 if (chkContextMenu.Checked)
                 {
                     ToggleContextMenu(targetExe, true);
                 }
 
                 progressBar.Value = 85;
-                lblStatus.Text = "Kayıt defteri ayarlanıyor...";
+                lblStatus.Text = "Windows Denetim Masası / Program Ekle-Kaldır kaydı oluşturuluyor...";
                 Application.DoEvents();
 
-                // Windows Program Ekle/Kaldır Kaydı
-                using (RegistryKey key = Registry.CurrentUser.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Uninstall\UltraHDIkonOzellestirici"))
-                {
-                    key.SetValue("DisplayName", APP_NAME);
-                    key.SetValue("DisplayVersion", APP_VERSION);
-                    key.SetValue("Publisher", APP_PUBLISHER);
-                    key.SetValue("DisplayIcon", targetExe + ",0");
-                    key.SetValue("InstallLocation", targetDir);
-                    key.SetValue("UninstallString", "\"" + targetExe + "\" /uninstall");
-                    key.SetValue("NoModify", 1, RegistryValueKind.DWord);
-                    key.SetValue("NoRepair", 1, RegistryValueKind.DWord);
-                }
+                // Windows HKLM ve HKCU Uninstall Kaydı
+                RegisterUninstall(targetExe, targetDir);
 
                 progressBar.Value = 100;
                 lblStatus.Text = "Tebrikler! Kurulum başarıyla tamamlandı.";
 
-                // Ekranı güncelle
                 progressBar.Visible = false;
                 chkLaunchNow.Visible = true;
                 btnInstall.Text = "Son";
@@ -345,6 +373,49 @@ namespace FolderIconSetup
                 btnInstall.Enabled = true;
                 btnCancel.Enabled = true;
             }
+        }
+
+        private static void RegisterUninstall(string exePath, string installDir)
+        {
+            // HKLM Sistem Geneli (Program Files standardı)
+            try
+            {
+                using (RegistryKey key = Registry.LocalMachine.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Uninstall\UltraHDIkonOzellestirici"))
+                {
+                    if (key != null)
+                    {
+                        key.SetValue("DisplayName", APP_NAME);
+                        key.SetValue("DisplayVersion", APP_VERSION);
+                        key.SetValue("Publisher", APP_PUBLISHER);
+                        key.SetValue("DisplayIcon", exePath + ",0");
+                        key.SetValue("InstallLocation", installDir);
+                        key.SetValue("UninstallString", "\"" + exePath + "\" /uninstall");
+                        key.SetValue("NoModify", 1, RegistryValueKind.DWord);
+                        key.SetValue("NoRepair", 1, RegistryValueKind.DWord);
+                    }
+                }
+            }
+            catch { }
+
+            // HKCU Mevcut Kullanıcı yedeği
+            try
+            {
+                using (RegistryKey key = Registry.CurrentUser.CreateSubKey(@"Software\Microsoft\Windows\CurrentVersion\Uninstall\UltraHDIkonOzellestirici"))
+                {
+                    if (key != null)
+                    {
+                        key.SetValue("DisplayName", APP_NAME);
+                        key.SetValue("DisplayVersion", APP_VERSION);
+                        key.SetValue("Publisher", APP_PUBLISHER);
+                        key.SetValue("DisplayIcon", exePath + ",0");
+                        key.SetValue("InstallLocation", installDir);
+                        key.SetValue("UninstallString", "\"" + exePath + "\" /uninstall");
+                        key.SetValue("NoModify", 1, RegistryValueKind.DWord);
+                        key.SetValue("NoRepair", 1, RegistryValueKind.DWord);
+                    }
+                }
+            }
+            catch { }
         }
 
         private static void CreateShortcut(string shortcutPath, string targetPath, string description, string iconPath)

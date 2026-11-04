@@ -1,0 +1,48 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    name: Create GitHub Release
+    runs-on: windows-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Compile Windows Executables
+        shell: cmd
+        run: |
+          C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe /target:winexe /optimize+ /platform:anycpu /win32icon:folder_icon.ico /resource:manifest.json /resource:background.js /resource:ico-utils.js /resource:popup.html /resource:popup.js /resource:icon16.png /resource:icon48.png /resource:icon128.png /out:KlasorIkonYapici.exe KlasorIkonYapici.cs
+          C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe /target:winexe /optimize+ /platform:anycpu /win32icon:folder_icon.ico /resource:KlasorIkonYapici.exe /resource:folder_icon.ico /out:UltraHDIkonKurulum.exe Setup.cs
+
+      - name: Publish Release with Assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            UltraHDIkonKurulum.exe
+            KlasorIkonYapici.exe
+            folder_icon.ico
+          name: Ultra HD İkon ve Klasör Özelleştirici ${{ github.ref_name }}
+          body: |
+            ## 🎨 Ultra HD İkon ve Klasör Özelleştirici ${{ github.ref_name }}
+
+            ### 📥 İndirme Seçenekleri (Assets):
+            * **`UltraHDIkonKurulum.exe`** (Önerilen): Windows Kurulum Sihirbazı. Program Files klasörüne kurar, Masaüstü/Başlat kısayollarını ve klasör sağ tık menüsünü entegre eder.
+            * **`KlasorIkonYapici.exe`**: Kurulum gerektirmeyen taşınabilir (Portable) bağımsız versiyon.
+
+            ### 🚀 Yenilikler:
+            * **Program Files Kurulumu:** Yönetici yetkisi onaylı standart Program Files entegrasyonu.
+            * **Özel 3D Fluent Simge:** 256x256 çok katmanlı kristal netliğinde modern Windows 11 Fluent simgesi.
+            * **Dahili Resimden ICO Dönüştürücü:** PNG, JPG, BMP resimleri doğrudan 256x256 saf HD ICO yapar.
+            * **Gömülü Chrome Eklentisi:** Tek tıkla çıkartılıp Chrome'a eklenebilen HD simge indirme eklentisi.
+            * **Taşınabilir Bağıl Yol:** Klasör taşınsa bile simgeler asla bozulmaz.
+          draft: false
+          prerelease: false
+          generate_release_notes: false

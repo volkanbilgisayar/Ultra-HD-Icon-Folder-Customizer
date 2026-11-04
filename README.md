@@ -6,8 +6,10 @@ Modern Windows 10 & 11 standartlarında **256x256 Ultra HD** kristal netliğinde
 
 ## 🚀 Öne Çıkan Yenilikler (v2.1)
 
-1. **Tek Dosya Kurulum Sihirbazı (`UltraHDIkonKurulum.exe`):**
-   * Normal bir Windows programı gibi çalışır; Başlat Menüsü ve Masaüstü kısayollarını oluşturur, Windows "Program Ekle/Kaldır" sistemine kaydolur ve klasör sağ tık menüsüne anında entegre olur.
+1. **Program Files Kurulum Sihirbazı (`UltraHDIkonKurulum.exe`):**
+   * Windows standartlarına tam uyumlu olarak `C:\Program Files\Ultra HD Ikon Ozellestirici` dizinine kurulur.
+   * Başlat Menüsü ve Masaüstü kısayollarını oluşturur, Windows Denetim Masası / "Program Ekle veya Kaldır" listesine kaydolur ve klasör sağ tık menüsüne anında entegre olur.
+   * Doğrudan [GitHub Releases](https://github.com/volkanbilgisayar/Ultra-HD-Icon-Folder-Customizer/releases) sayfasından sürümüne göre tek tıkla indirilebilir.
 2. **Özel 3D Fluent Tasarım İkonu:**
    * Çok katmanlı (256x256, 128x128, 64x64, 48x48, 32x32, 16x16) özel 3D kristal cam detaylı klasör simgesi ile Windows görev çubuğu ve masaüstünde daima cam gibi net görünür.
 3. **Dahili Görsel Dönüştürücü (Resimden HD ICO Yap):**

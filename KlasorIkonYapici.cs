@@ -30,10 +30,21 @@ namespace FolderIconTool
         public const string APP_VERSION = "2.1.0";
         public const string APP_PUBLISHER = "Volkan Bilgisayar";
 
+        public static bool IsAdministrator()
+        {
+            try
+            {
+                System.Security.Principal.WindowsIdentity identity = System.Security.Principal.WindowsIdentity.GetCurrent();
+                System.Security.Principal.WindowsPrincipal principal = new System.Security.Principal.WindowsPrincipal(identity);
+                return principal.IsInRole(System.Security.Principal.WindowsBuiltInRole.Administrator);
+            }
+            catch { return false; }
+        }
+
         public static string GetDefaultInstallDir()
         {
-            string localApp = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            return Path.Combine(localApp, @"Programs\Ultra HD Ikon Ozellestirici");
+            string programFiles = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+            return Path.Combine(programFiles, "Ultra HD Ikon Ozellestirici");
         }
 
         public static void RefreshShell(string path)
@@ -568,6 +579,21 @@ namespace FolderIconTool
 
         public static void UninstallApp()
         {
+            if (!IsAdministrator())
+            {
+                try
+                {
+                    ProcessStartInfo psi = new ProcessStartInfo();
+                    psi.FileName = Application.ExecutablePath;
+                    psi.Arguments = "/uninstall";
+                    psi.Verb = "runas";
+                    psi.UseShellExecute = true;
+                    Process.Start(psi);
+                    return;
+                }
+                catch { }
+            }
+
             if (MessageBox.Show("Ultra HD İkon ve Klasör Özelleştirici uygulamasını bilgisayarınızdan kaldırmak istediğinize emin misiniz?", "Program Kaldırma", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
             {
                 return;
@@ -585,6 +611,12 @@ namespace FolderIconTool
                 if (File.Exists(startShortcut)) File.Delete(startShortcut);
 
                 ToggleContextMenu("", false);
+
+                try
+                {
+                    Registry.LocalMachine.DeleteSubKeyTree(@"Software\Microsoft\Windows\CurrentVersion\Uninstall\UltraHDIkonOzellestirici", false);
+                }
+                catch { }
 
                 try
                 {
