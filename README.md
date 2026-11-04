@@ -2,6 +2,11 @@
 
 Modern Windows 10 & 11 standartlarında **256x256 Ultra HD** kristal netliğinde klasör simgeleri uygulayan, resimleri anında çok katmanlı HD `.ico` formatına dönüştüren ve tek tıkla Windows'a kurulan **hepsi-bir-arada masaüstü yazılımı**.
 
+### 📥 Doğrudan İndirme Linkleri (v2.1):
+* 🚀 **[Ultra HD Kurulum Sihirbazı İndir (Setup .exe)](https://github.com/volkanbilgisayar/Ultra-HD-Icon-Folder-Customizer/raw/main/UltraHDIkonKurulum.exe)** *(Önerilen - Program Files'a kurar)*
+* ⚡ **[Taşınabilir Sürümü İndir (Portable .exe)](https://github.com/volkanbilgisayar/Ultra-HD-Icon-Folder-Customizer/raw/main/KlasorIkonYapici.exe)** *(Kurulumsuz doğrudan çalışır)*
+* 📦 **[Kurulum Paketi (.zip)](https://github.com/volkanbilgisayar/Ultra-HD-Icon-Folder-Customizer/raw/main/UltraHDIkonKurulum-v2.1.0-Setup.zip)**
+
 ---
 
 ## 🚀 Öne Çıkan Yenilikler (v2.1)
