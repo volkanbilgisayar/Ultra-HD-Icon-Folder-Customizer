@@ -332,9 +332,11 @@ namespace FolderIconTool
                     File.SetAttributes(iniPath, FileAttributes.Normal);
                 }
 
-                // desktop.ini içeriğini oluştur (Windows standart 2 satırlı saf simge formatı)
-                string fullIcoPath = Path.Combine(folderPath, icoFileName);
-                string content = "[.ShellClassInfo]\r\nIconResource=" + fullIcoPath + ",0\r\n";
+                // desktop.ini içeriğini oluştur (Taşınabilir Bağıl Yol - Klasör taşınsa veya sürücü harfi değişse bile bozulmaz)
+                string content = "[.ShellClassInfo]\r\n" +
+                                 "IconResource=" + icoFileName + ",0\r\n" +
+                                 "IconFile=" + icoFileName + "\r\n" +
+                                 "IconIndex=0\r\n";
                 File.WriteAllText(iniPath, content, System.Text.Encoding.Default);
 
                 // desktop.ini dosyasını Gizli ve Sistem yap (Windows şart koşar)

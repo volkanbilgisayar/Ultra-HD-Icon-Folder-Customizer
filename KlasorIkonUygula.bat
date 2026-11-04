@@ -79,7 +79,9 @@ if defined ICO_FILE (
     )
     (
         echo [.ShellClassInfo]
-        echo IconResource=%CURR_DIR%\!ICO_FILE!,0
+        echo IconResource=!ICO_FILE!,0
+        echo IconFile=!ICO_FILE!
+        echo IconIndex=0
     ) > "!INI_PATH!"
     attrib +h +s "!INI_PATH!"
     attrib +r "%CURR_DIR%"

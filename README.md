@@ -67,6 +67,8 @@ Klasörlerin içine indirdiğiniz `.ico` dosyalarını veya oyunların kendi res
    * Oyunların `USRDIR`, `TROPDIR`, `LICDIR` gibi binlerce dosyalık derin klasörleri akıllı arama kuyruğu sayesinde atlanır, işlem saniyeler içinde tamamlanır.
 5. **Windows 10 & 11 Simge Önbelleği Temizleyici:**
    * Değiştirdiğiniz simgeler Windows'un eski önbelleği yüzünden hemen güncellenmezse, programdaki **"🧹 Simge Önbelleğini Temizle"** butonuna basmanız yeterlidir. Windows 11 `iconcache_*.db` dosyalarını temizleyip Gezgin'i anında yeniler.
+6. **Taşınabilir Bağıl Yol (Klasör Taşınınca Simge Kaybolmaz):**
+   * Eskiden `desktop.ini` dosyasına `C:\...` veya `F:\...` gibi sabit tam yollar yazılırdı. Klasör başka bir sürücüye, masaüstüne veya harici diske taşındığında eski yol bulunamadığı için simge sarı klasöre dönerdi. Artık **bağıl yol (`folder_icon.ico,0`)** kullanılır; klasörü nereye taşırsanız taşıyın, başka bir bilgisayara veya USB belleğe atsanız bile simgeler asla bozulmaz.
 
 ---
 
